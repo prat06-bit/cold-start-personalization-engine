@@ -2,7 +2,6 @@ import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 from sentence_transformers import SentenceTransformer
 
-# Load the SAME embedding model
 _model = SentenceTransformer("all-MiniLM-L6-v2")
 
 
@@ -13,12 +12,6 @@ def cold_start_recommend(
     top_k_clusters=3,
     top_k_docs=5
 ):
-    """
-    Cold-start personalization:
-    - user_text: new user sentence
-    - df: dataframe with cluster labels
-    - embeddings: document embeddings
-    """
 
     # 1. Embed user text
     user_embedding = _model.encode([user_text])
