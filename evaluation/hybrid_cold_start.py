@@ -12,11 +12,6 @@ def hybrid_cold_start_recommend(
     top_k_docs=5,
     confidence_threshold=0.25
 ):
-    """
-    Hybrid cold-start recommendation:
-    - Uses cluster-aware mode when confidence is high
-    - Falls back to pure semantic similarity when confidence is low
-    """
 
     user_embedding = _model.encode([user_text])
     similarities = cosine_similarity(user_embedding, embeddings)[0]
