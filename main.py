@@ -77,7 +77,6 @@ print("\nPipeline completed successfully.")
 
 print("\n[8] Cold-start personalization (hybrid mode)")
 user_query = "I want to learn machine learning and artificial intelligence"
-
 # compute soft cluster affinity (you already do this)
 probs = compute_soft_cluster_affinity(
     user_text=user_query,
@@ -101,17 +100,13 @@ for _, row in recs.iterrows():
 
 
 # Soft Cluster Probabilities
-
 print("\n[9] Soft cluster affinity")
-
 user_query = "I want to learn machine learning and artificial intelligence"
-
 probs = compute_soft_cluster_affinity(
     user_text=user_query,
     df=df,
     embeddings=embeddings
 )
-
 print("\nSoft cluster distribution:")
 print(probs.head(5))
 
