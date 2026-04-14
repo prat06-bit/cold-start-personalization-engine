@@ -3,8 +3,6 @@ from sklearn.metrics.pairwise import cosine_similarity
 from sentence_transformers import SentenceTransformer
 
 _model = SentenceTransformer("all-MiniLM-L6-v2")
-
-
 def cold_start_recommend(
     user_text,
     df,
