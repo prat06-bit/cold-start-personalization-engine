@@ -115,17 +115,13 @@ probs = compute_soft_cluster_affinity(
 print("\nSoft cluster distribution:")
 print(probs.head(5))
 
-# -------------------------------
-# STEP 10: Explainability (Why Recommended)
-# -------------------------------
-print("\n[10] Explainability: Why these recommendations?")
 
+print("\n[10] Explainability: Why these recommendations?")
 explanations = explain_recommendation(
     user_text=user_query,
     recommendations=recs,
     cluster_probs=probs
 )
-
 for i, exp in enumerate(explanations, 1):
     print(f"\nExplanation {i}:")
     print("Cluster:", exp["cluster"])
