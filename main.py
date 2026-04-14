@@ -32,18 +32,13 @@ else:
 
 print("Embeddings shape:", embeddings.shape)
 
-
-
 print("\n[3] Performing density-based clustering (OPTICS)...")
 clusters = cluster_embeddings(embeddings)
 df["cluster"] = clusters
-
 n_clusters = len(set(clusters)) - (1 if -1 in clusters else 0)
 noise_ratio = np.mean(clusters == -1)
 coverage = 1 - noise_ratio
 print("Cluster coverage:", round(coverage, 3))
-
-
 print("Clusters discovered:", n_clusters)
 print("Noise ratio:", round(noise_ratio, 3))
 
