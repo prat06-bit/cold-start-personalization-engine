@@ -69,9 +69,7 @@ valid_clusters = [c for c in sorted(df["cluster"].unique()) if c != -1]
 for cid in valid_clusters[:2]:
     show_cluster_examples(df, cluster_id=cid, n=3)
 
-# -------------------------------
-# STEP 7: UMAP Projection (Advanced Analysis)
-# -------------------------------
+
 print("\n[7] Running UMAP dimensionality reduction...")
 
 reducer = umap.UMAP(
