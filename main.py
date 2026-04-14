@@ -14,20 +14,18 @@ import os
 import umap
 import pandas as pd
 
-print("\n[1] Loading and cleaning data...")
+print("\n[1] Loading and cleaning data.")
 df = load_and_clean_data("newsgroups.json")
 print("Dataset shape:", df.shape)
 
-
-print("\n[2] Generating sentence embeddings...")
-
+print("\n[2] Generating sentence embeddings")
 EMB_PATH = "embeddings.npy"
 
 if os.path.exists(EMB_PATH):
-    print("Loading cached embeddings from disk...")
+    print("Loading cached embeddings from disk")
     embeddings = np.load(EMB_PATH)
 else:
-    print("No cache found. Generating embeddings...")
+    print("No cache found. Generating embeddings")
     embeddings = generate_embeddings(df["clean_text"].tolist())
     np.save(EMB_PATH, embeddings)
     print("Embeddings cached to disk.")
