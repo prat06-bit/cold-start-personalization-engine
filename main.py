@@ -74,11 +74,8 @@ print("UMAP projection complete.")
 print(df[["umap_x", "umap_y", "cluster"]].head())
 print("\nPipeline completed successfully.")
 
-# -------------------------------
-# STEP 8: Hybrid Cold-Start Personalization
-# -------------------------------
-print("\n[8] Cold-start personalization (hybrid mode)")
 
+print("\n[8] Cold-start personalization (hybrid mode)")
 user_query = "I want to learn machine learning and artificial intelligence"
 
 # compute soft cluster affinity (you already do this)
@@ -87,7 +84,6 @@ probs = compute_soft_cluster_affinity(
     df=df,
     embeddings=embeddings
 )
-
 mode, recs = hybrid_cold_start_recommend(
     user_text=user_query,
     df=df,
@@ -95,9 +91,7 @@ mode, recs = hybrid_cold_start_recommend(
     cluster_affinity=probs,
     top_k_docs=5
 )
-
 print(f"\nCold-start mode: {mode}")
-
 print("\nRecommended documents:")
 for _, row in recs.iterrows():
     print("\n--- Recommendation ---")
