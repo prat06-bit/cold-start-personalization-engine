@@ -50,14 +50,12 @@ if score is not None:
     print("Silhouette Score:", round(score, 4))
 
 # Cluster Size Analysis
-
 print("\n[5] Cluster size distribution (top 10):")
 print(df["cluster"].value_counts().head(10))
 
 #  Explainability
 print("\n[6] Inspecting discovered clusters...")
 valid_clusters = [c for c in sorted(df["cluster"].unique()) if c != -1]
-
 for cid in valid_clusters[:2]:
     show_cluster_examples(df, cluster_id=cid, n=3)
 
