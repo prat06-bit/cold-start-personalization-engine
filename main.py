@@ -61,22 +61,17 @@ for cid in valid_clusters[:2]:
 
 
 print("\n[7] Running UMAP dimensionality reduction...")
-
 reducer = umap.UMAP(
     n_neighbors=15,
     min_dist=0.1,
     n_components=2,
     random_state=42
 )
-
 embedding_2d = reducer.fit_transform(embeddings)
-
 df["umap_x"] = embedding_2d[:, 0]
 df["umap_y"] = embedding_2d[:, 1]
-
 print("UMAP projection complete.")
 print(df[["umap_x", "umap_y", "cluster"]].head())
-
 print("\nPipeline completed successfully.")
 
 # -------------------------------
