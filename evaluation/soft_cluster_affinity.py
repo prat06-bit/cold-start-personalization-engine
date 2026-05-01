@@ -5,10 +5,6 @@ from sentence_transformers import SentenceTransformer
 _model = SentenceTransformer("all-MiniLM-L6-v2")
 
 def compute_soft_cluster_affinity(user_text, df, embeddings):
-    """
-    Returns soft probability distribution over clusters
-    """
-
     # Embed user text
     user_emb = _model.encode([user_text])
 
