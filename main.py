@@ -15,20 +15,20 @@ import os
 import umap
 import pandas as pd
 
-print("\n[1] Loading and cleaning data...")
+print("\n[1] Loading and cleaning data")
 df = load_and_clean_data("newsgroups.json")
 print("Dataset shape:", df.shape)
 
 
-print("\n[2] Generating sentence embeddings...")
+print("\n[2] Generating sentence embeddings")
 
 EMB_PATH = "embeddings.npy"
 
 if os.path.exists(EMB_PATH):
-    print("Loading cached embeddings from disk...")
+    print("Loading cached embeddings from disk")
     embeddings = np.load(EMB_PATH)
 else:
-    print("No cache found. Generating embeddings...")
+    print("No cache found. Generating embeddings")
     embeddings = generate_embeddings(df["clean_text"].tolist())
     np.save(EMB_PATH, embeddings)
     print("Embeddings cached to disk.")
@@ -37,7 +37,7 @@ print("Embeddings shape:", embeddings.shape)
 
 
 
-print("\n[3] Performing density-based clustering (OPTICS)...")
+print("\n[3] Performing density-based clustering (OPTICS)")
 clusters = cluster_embeddings(embeddings)
 df["cluster"] = clusters
 
@@ -51,7 +51,7 @@ print("Clusters discovered:", n_clusters)
 print("Noise ratio:", round(noise_ratio, 3))
 
 
-print("\n[4] Evaluating clustering quality...")
+print("\n[4] Evaluating clustering quality")
 score = evaluate_clustering(embeddings, clusters)
 
 if score is not None:
@@ -69,10 +69,8 @@ valid_clusters = [c for c in sorted(df["cluster"].unique()) if c != -1]
 for cid in valid_clusters[:2]:
     show_cluster_examples(df, cluster_id=cid, n=3)
 
-# -------------------------------
-# STEP 7: UMAP Projection (Advanced Analysis)
-# -------------------------------
-print("\n[7] Running UMAP dimensionality reduction...")
+# STEP 7: UMAP Projection 
+print("\n[7] Running UMAP dimensionality reduction")
 
 reducer = umap.UMAP(
     n_neighbors=15,
@@ -91,9 +89,7 @@ print(df[["umap_x", "umap_y", "cluster"]].head())
 
 print("\nPipeline completed successfully.")
 
-# -------------------------------
 # STEP 8: Hybrid Cold-Start Personalization
-# -------------------------------
 print("\n[8] Cold-start personalization (hybrid mode)")
 
 user_query = "I want to learn machine learning and artificial intelligence"
@@ -117,7 +113,7 @@ print(f"\nCold-start mode: {mode}")
 
 print("\nRecommended documents:")
 for _, row in recs.iterrows():
-    print("\n--- Recommendation ---")
+    print("\nRecommendation ")
     print("Cluster:", row.get("cluster", "N/A"))
     print("Similarity:", round(row["similarity"], 4))
     print(row["text"][:400])
@@ -138,9 +134,7 @@ probs = compute_soft_cluster_affinity(
 print("\nSoft cluster distribution:")
 print(probs.head(5))
 
-# -------------------------------
-# STEP 10: Explainability (Why Recommended)
-# -------------------------------
+# STEP 10: Explainability
 print("\n[10] Explainability: Why these recommendations?")
 
 explanations = explain_recommendation(
